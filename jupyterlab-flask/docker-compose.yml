@@ -1,4 +1,4 @@
-version: "2.1"
+version: "2.0"
 services:
   jupyterlab:
     container_name: jb
@@ -8,4 +8,14 @@ services:
     volumes:
       - /root/jupyterlab/jovyan:/home/jovyan
     command: /jupyter.sh
+    restart: always    
+
+  flask:
+    container_name: py
+    image: minelords/jupyterlab:v2.1
+    ports:
+      - "0.0.0.0:5000:5000"
+    volumes:
+      - /root/jupyterlab/app:/app
+    command: /flask.sh
     restart: always
